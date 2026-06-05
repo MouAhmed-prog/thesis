@@ -211,7 +211,7 @@ export default function App() {
       {/* Main content area */}
       <div className="flex-1 flex flex-col">
         {/* Main Slides Visual Container */}
-        <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex flex-col justify-center relative overflow-hidden ml-20">
+        <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex flex-col justify-center relative overflow-hidden">
           {isPlaying && (
             <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-64 h-2 bg-gray-300 rounded-full overflow-hidden z-50 shadow-lg">
               <div className={`h-full ${themeColors.primaryBg} transition-all duration-100`} style={{ width: `${progress}%` }} />
