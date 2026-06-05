@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Cairo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --primary: #005f73;
+  --secondary: #0a9396;
+  --accent: #ee9b00;
+  --dark: #001219;
+  --light: #e9d8a6;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  direction: rtl;
+  background-color: #0f172a; /* Premium Slate-900 dark theme as requested for "interactive display platform" or high-contrast modern feeling */
+  overflow-x: hidden;
+  color: #f1f5f9;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 10px;
+  border: 2px solid #f3f4f6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #f3f4f6;
+}
+
+.glow-shadow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+.glow-btn {
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+/* Scroll snap or slide layouts */
+.slide-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}

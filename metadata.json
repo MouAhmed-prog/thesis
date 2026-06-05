@@ -1,0 +1,6 @@
+{
+  "name": "مذكرة تخرج: تكنولوجيا المعلومات وتعزيز الأداء",
+  "description": "منصة تفاعلية متكاملة لعرض مناقشة مذكرة الماستر حول دور تكنولوجيا المعلومات والاتصالات في تعزيز أداء مؤسسة اتصالات الجزائر بمدينة الجلفة",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
