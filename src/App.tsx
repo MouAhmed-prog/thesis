@@ -11,11 +11,13 @@ import {
   GraduationCap,
   Info,
   Layers,
+  Menu,
   Monitor,
   Shield,
   ShieldAlert,
   Sparkles,
   Users,
+  X,
   Zap
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -208,10 +210,10 @@ export default function App() {
       <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-emerald-200/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-orange-200/20 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Main content area */}
-      <div className="flex-1 flex flex-col">
-        {/* Main Slides Visual Container */}
-        <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 flex flex-col justify-center relative overflow-hidden">
+      {/* Main content area - responsive margin for sidebar */}
+      <div className="flex-1 flex flex-col md:ml-20">
+        {/* Main Slides Visual Container - Added pb for bottom navigation */}
+        <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 pb-24 flex flex-col justify-center relative overflow-hidden">
           {isPlaying && (
             <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-64 h-2 bg-gray-300 rounded-full overflow-hidden z-50 shadow-lg">
               <div className={`h-full ${themeColors.primaryBg} transition-all duration-100`} style={{ width: `${progress}%` }} />
@@ -235,8 +237,11 @@ export default function App() {
                   <div className="space-y-2">
                     <span className={`${themeColors.primary} text-sm font-mono tracking-widest font-semibold flex items-center gap-1.5 uppercase`}>
                       <span className={`w-2 h-2 rounded ${themeColors.primaryBg} inline-block animate-pulse`} />
-                      جامعة زيان عاشور الجلفة - كلية العلوم الاقتصادية
+                      جامعة زيان عاشور الجلفة - كلية العلوم الاقتصادية، التجارية وعلوم التسيير
                     </span>
+                    <p className="text-base text-gray-600 font-mono mt-1">
+                      قسم علوم التسيير - تخصص إدارة أعمال
+                    </p>
                     <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
                       {THESIS_META.title}
                     </h2>
@@ -377,7 +382,7 @@ export default function App() {
                     return (
                       <div
                         key={idx}
-                        className={`p-5 rounded-2xl border-2 flex flex-col justify-between min-h-[220px] transition-all hover:translate-y-[-2px] shadow-sm ${
+                        className={`p-5 rounded-2xl border-2 flex flex-col justify-between min-h-[280px] transition-all hover:translate-y-[-2px] shadow-sm ${
                           isSignificant
                             ? `bg-orange-50 border-orange-300`
                             : isApproved
@@ -391,13 +396,19 @@ export default function App() {
                             {h.text}
                           </p>
                         </div>
-                        <div className="mt-4 pt-3 border-t-2 border-gray-200 flex items-center justify-between text-base">
-                          <span className="text-gray-600 font-mono font-semibold">التحقق الإحصائي:</span>
-                          <span className={`font-bold ${
-                            isSignificant ? themeColors.accentText : isApproved ? "text-amber-600" : "text-gray-600"
-                          }`}>
-                            {h.status}
-                          </span>
+                        <div className="mt-4 pt-3 border-t-2 border-gray-200 space-y-2">
+                          <div className="flex items-center justify-between text-base">
+                            <span className="text-gray-600 font-mono font-semibold">التحقق الإحصائي:</span>
+                            <span className={`font-bold ${
+                              isSignificant ? themeColors.accentText : isApproved ? "text-amber-600" : "text-gray-600"
+                            }`}>
+                              {h.status}
+                            </span>
+                          </div>
+                          <div className="bg-white bg-opacity-60 p-3 rounded-lg">
+                            <span className="text-sm text-gray-700 font-mono block mb-1 font-semibold">النتيجة الإحصائية:</span>
+                            <p className="text-sm text-gray-900 leading-relaxed font-medium">{h.result}</p>
+                          </div>
                         </div>
                       </div>
                     );
@@ -827,18 +838,41 @@ export default function App() {
         </main>
       </div>
 
-      {/* Left Vertical Navigation Sidebar */}
-      <aside className={`fixed top-0 left-0 h-screen border-r ${themeColors.cardBorder} ${themeColors.cardBg} shadow-lg backdrop-blur-md flex flex-col items-center py-4 gap-3 z-40 transition-all duration-300 ${
-        isNavOpen ? "w-80" : "w-20"
-      }`}>
-        {/* Toggle Navigation Button */}
+      {/* Mobile Hamburger Menu Button - visible only on mobile */}
+      <button
+        onClick={() => setIsNavOpen(!isNavOpen)}
+        className={`md:hidden fixed top-4 left-4 z-50 p-3 rounded-xl ${themeColors.primaryBg} text-white shadow-lg hover:scale-105 transition-transform`}
+        title="فتح القائمة"
+      >
+        {isNavOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Overlay for mobile when sidebar is open */}
+      {isNavOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-black/50 z-30 backdrop-blur-sm"
+          onClick={() => setIsNavOpen(false)}
+        />
+      )}
+
+      {/* Left Vertical Navigation Sidebar - Responsive */}
+      <aside className={`
+        fixed top-0 left-0 h-screen border-r ${themeColors.cardBorder} ${themeColors.cardBg} shadow-lg backdrop-blur-md flex flex-col items-center py-4 gap-3 transition-all duration-300
+        ${isNavOpen ? "w-80" : "w-20"}
+        md:z-40 z-40
+        ${isNavOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+      `}>
+        {/* Toggle Navigation Button - Hidden on mobile, visible on desktop */}
         <button
           onClick={() => setIsNavOpen(!isNavOpen)}
-          className={`w-16 h-16 rounded-xl ${themeColors.primaryBg} text-white flex items-center justify-center transition-all hover:scale-105 shadow-lg mb-2 shrink-0`}
+          className={`hidden md:flex w-16 h-16 rounded-xl ${themeColors.primaryBg} text-white items-center justify-center transition-all hover:scale-105 shadow-lg mb-2 shrink-0`}
           title="فتح/إغلاق فهرس المحاور"
         >
           {isNavOpen ? <ChevronLeft className="w-7 h-7" /> : <Layers className="w-7 h-7" />}
         </button>
+
+        {/* Mobile: Add top spacing to account for hamburger button */}
+        <div className="md:hidden h-16 shrink-0" />
 
         {/* Slide navigation or list */}
         {!isNavOpen ? (
