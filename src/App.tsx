@@ -1,4 +1,5 @@
 import {
+  AlertTriangle,
   Award,
   BarChart2,
   Briefcase,
@@ -212,8 +213,8 @@ export default function App() {
 
       {/* Main content area - responsive margin for sidebar */}
       <div className="flex-1 flex flex-col md:ml-20">
-        {/* Main Slides Visual Container - Added pb for bottom navigation */}
-        <main className="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 pb-24 flex flex-col justify-center relative overflow-hidden">
+        {/* Main Slides Visual Container - Optimized padding for all screen sizes */}
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 md:px-8 py-4 md:py-6 pb-28 md:pb-32 flex flex-col justify-center relative overflow-hidden">
           {isPlaying && (
             <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-64 h-2 bg-gray-300 rounded-full overflow-hidden z-50 shadow-lg">
               <div className={`h-full ${themeColors.primaryBg} transition-all duration-100`} style={{ width: `${progress}%` }} />
@@ -251,7 +252,7 @@ export default function App() {
                   </div>
 
                   {/* Authors and Supervisors Card with beautiful Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white border-2 border-gray- shadow-lg200 p-5 rounded-2xl glow-shadow max-w-2xl">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white border-2 border-gray-200 shadow-lg p-5 rounded-2xl max-w-2xl">
                     <div className="space-y-1">
                       <span className="text-xs text-gray-500 uppercase tracking-widest block font-mono">
                         من إعداد الطالبين الباحثين:
@@ -283,7 +284,7 @@ export default function App() {
                     <div className="absolute inset-0 border border-cyan-500/30 rounded-full animate-ping pointer-events-none" style={{ animationDuration: "3s" }} />
 
                     {/* Outer core circle with telecom styling */}
-                    <div className="w-full h-full rounded-full bg-white border-2 border-gray- shadow-lg300 shadow-2xl flex flex-col items-center justify-center text-center p-6 relative">
+                    <div className="w-full h-full rounded-full bg-white border-2 border-gray-300 shadow-2xl flex flex-col items-center justify-center text-center p-6 relative">
                       <div className={`w-16 h-16 rounded-2xl ${themeColors.primaryBg} border ${themeColors.borderGlow} border-current flex items-center justify-center mb-4`}>
                         <Monitor className={`w-8 h-8 text-white`} />
                       </div>
@@ -314,7 +315,7 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                   {/* Left Column: Question Details */}
-                  <div className="md:col-span-4 bg-white border-2 border-gray- shadow-lg300 p-6 rounded-2xl space-y-4">
+                  <div className="md:col-span-4 bg-white border-2 border-gray-300 shadow-lg p-6 rounded-2xl space-y-4">
                     <h4 className="text-base font-bold tracking-wider uppercase text-gray-600">طبيعة الإشكال العملي</h4>
                     <p className="text-base text-gray-700 leading-relaxed text-justify">
                       تفترض أدبيات التسيير الحديثة أن امتلاك وسائل التكنولوجيا يخلق دفعاً كفاءاتياً. يكمن السؤال حول كيفية مواءمة اتصالات الجزائر (كمتعامل وطني رائد بمدينة الجلفة) لاستثماراتها التكنولوجية مع مستويات أدائها وعلاقته بالأبعاد الخمسة.
@@ -341,7 +342,7 @@ export default function App() {
                       <span className="text-sm font-bold text-gray-600 block font-mono">الأسئلة البحثية المتفرعة (5 أسئلة):</span>
                       <div className="grid grid-cols-1 gap-3">
                         {PROBLEMATIC.subQuestions.map((q, idx) => (
-                          <div key={idx} className="flex items-start gap-3 bg-gray-50 border-2 border-gray- shadow-md300 p-4 rounded-xl hover:bg-gray-100 transition-colors">
+                          <div key={idx} className="flex items-start gap-3 bg-gray-50 border-2 border-gray-300 shadow-md p-4 rounded-xl hover:bg-gray-100 transition-colors">
                             <span className={`w-6 h-6 ${themeColors.primaryBg} border ${themeColors.borderGlow} border-current text-white rounded-lg flex items-center justify-center font-mono text-sm font-semibold shrink-0 mt-0.5`}>
                               {idx + 1}
                             </span>
@@ -382,7 +383,7 @@ export default function App() {
                     return (
                       <div
                         key={idx}
-                        className={`p-5 rounded-2xl border-2 flex flex-col justify-between min-h-[280px] transition-all hover:translate-y-[-2px] shadow-sm ${
+                        className={`p-5 rounded-2xl border-2 flex flex-col justify-between min-h-[340px] transition-all hover:translate-y-[-2px] shadow-sm ${
                           isSignificant
                             ? `bg-orange-50 border-orange-300`
                             : isApproved
@@ -405,9 +406,15 @@ export default function App() {
                               {h.status}
                             </span>
                           </div>
-                          <div className="bg-white bg-opacity-60 p-3 rounded-lg">
-                            <span className="text-sm text-gray-700 font-mono block mb-1 font-semibold">النتيجة الإحصائية:</span>
-                            <p className="text-sm text-gray-900 leading-relaxed font-medium">{h.result}</p>
+                          <div className="bg-white bg-opacity-60 p-3 rounded-lg space-y-2">
+                            <div>
+                              <span className="text-sm text-gray-700 font-mono block mb-1 font-semibold">النتيجة الإحصائية:</span>
+                              <p className="text-sm text-gray-900 leading-relaxed font-medium">{h.result}</p>
+                            </div>
+                            <div className="pt-2 border-t border-gray-200">
+                              <span className="text-xs text-gray-600 font-mono block mb-1 font-semibold">التفسير:</span>
+                              <p className="text-xs text-gray-800 leading-relaxed italic">{h.interpretation}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -619,23 +626,23 @@ export default function App() {
                   </h3>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  <div className="lg:col-span-7 space-y-5">
-                    <p className="text-xl text-gray-700 leading-relaxed text-justify font-medium">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                  <div className="lg:col-span-7 space-y-4 flex flex-col">
+                    <p className="text-base text-gray-700 leading-relaxed text-justify">
                       {RELIABILITY.desc} يُجمع الخبراء الإحصائيون أن قيم ألفا كرونباخ التي تتخطى العتبة الكلاسيكية (0.60 أو 0.70) تؤكد متانة وتناغم المقياس العلمي وقدرة الأداة على إعطاء نتائج متماثلة ومستقرة إذا تم تكرار التطبيق في بيئة عمل مماثلة.
                     </p>
-                    <div className="p-6 bg-white border-2 border-gray-300 shadow-lg rounded-2xl space-y-5">
+                    <div className="p-5 bg-white border-2 border-gray-300 shadow-lg rounded-2xl space-y-4 flex-1">
                       {RELIABILITY.fields.map((field, idx) => (
-                        <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b-2 border-gray-200/50 pb-4 last:border-none last:pb-0">
-                          <div>
-                            <h4 className="text-xl font-bold text-gray-900 mb-1">{field.name}</h4>
-                            <span className="text-base text-gray-600 font-mono block">عدد مؤشراته: {field.items}</span>
+                        <div key={idx} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b-2 border-gray-200/50 pb-3 last:border-none last:pb-0">
+                          <div className="flex-1">
+                            <h4 className="text-base font-bold text-gray-900 mb-1 leading-tight">{field.name}</h4>
+                            <span className="text-sm text-gray-600 font-mono block">عدد مؤشراته: {field.items}</span>
                           </div>
-                          <div className="flex items-center gap-4">
-                            <span className={`text-lg font-bold px-4 py-2 rounded-lg ${themeColors.accentBg} text-white border-2 border-orange-700 shadow-md`}>
+                          <div className="flex items-center gap-3 shrink-0">
+                            <span className={`text-sm font-bold px-3 py-1.5 rounded-lg ${themeColors.accentBg} text-white border-2 border-orange-700 shadow-md whitespace-nowrap`}>
                               {field.ranking}
                             </span>
-                            <span className={`text-2xl font-mono font-bold ${themeColors.primary}`}>
+                            <span className={`text-xl font-mono font-bold ${themeColors.primary}`}>
                               α = {field.value.toFixed(3)}
                             </span>
                           </div>
@@ -644,11 +651,11 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className={`lg:col-span-5 ${themeColors.primaryBg} border-2 border-emerald-700 rounded-2xl p-8 text-center space-y-5 relative overflow-hidden shadow-xl`}>
+                  <div className={`lg:col-span-5 ${themeColors.primaryBg} border-2 border-emerald-700 rounded-2xl p-6 text-center space-y-4 relative overflow-hidden shadow-xl flex flex-col justify-center min-h-[300px]`}>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-xl" />
-                    <span className="text-xl font-bold text-white uppercase tracking-widest font-mono block">التقييم الأكاديمي الكلي للثبات:</span>
-                    <div className="text-6xl text-white font-black">ثبات معزز</div>
-                    <p className="text-xl text-white leading-relaxed font-medium">
+                    <span className="text-base font-bold text-white uppercase tracking-widest font-mono block">التقييم الأكاديمي الكلي للثبات:</span>
+                    <div className="text-5xl text-white font-black">ثبات معزز</div>
+                    <p className="text-base text-white leading-relaxed">
                       {RELIABILITY.standard}
                     </p>
                     <div className="flex justify-center gap-2 mt-4">
@@ -739,6 +746,19 @@ export default function App() {
                 <p className="text-base text-gray-600 leading-normal max-w-2xl">
                   لوحة المحاكاة الرياضية التنبؤية للأداء المؤسسي بناءً على الأوزان الإحصائية المستخرجة من برنامج SPSS. حرك المقاييس لتلاحظ تغير نتائج التنبؤ المالي والخدمي.
                 </p>
+
+                {/* Important note about software negative coefficient */}
+                <div className="bg-amber-50 border-2 border-amber-300 rounded-xl p-5 max-w-4xl">
+                  <div className="flex items-start gap-4">
+                    <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0 mt-1" />
+                    <div className="space-y-2">
+                      <h4 className="text-lg font-bold text-amber-900">ملاحظة هامة حول المعامل السالب للبرمجيات:</h4>
+                      <p className="text-base text-gray-800 leading-relaxed">
+                        المعامل السالب (-0.467) للبرمجيات <strong>لا يعني</strong> أن البرمجيات تضر بالأداء! هذه ظاهرة إحصائية تُعرف بـ <strong>&quot;تأثير الكبت&quot;</strong> أو <strong>&quot;التعددية الخطية&quot;</strong> بسبب الارتباط العالي بين البرمجيات والأبعاد الأخرى (خاصة الأمن الرقمي)، مما يؤدي إلى انعكاس الإشارة في النموذج المتعدد. في الواقع، البرمجيات مهمة جداً لكن تأثيرها مُدمج مع المتغيرات الأخرى.
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Embed the majestic RegressionSimulator component */}
                 <RegressionSimulator />

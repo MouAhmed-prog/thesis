@@ -155,11 +155,11 @@ export default function RegressionSimulator() {
               </div>
 
               {/* Software (Negative weight) */}
-              <div className="space-y-3 bg-white border-2 border-gray-300 p-4 rounded-xl">
-                <div className="flex justify-between text-lg">
+              <div className="space-y-3 bg-amber-50 border-2 border-amber-300 p-4 rounded-xl">
+                <div className="flex justify-between text-lg items-center">
                   <span className="font-bold text-gray-900 flex items-center gap-2">
-                    البرمجيات والأنظمة (Beta = -0.364)
-                    <HelpCircle className="w-5 h-5 text-rose-600 cursor-help" title="تفسير الوزن السالب إحصائياً" />
+                    البرمجيات والأنظمة (Beta = -0.364)*
+                    <HelpCircle className="w-5 h-5 text-amber-600 cursor-help" title="المعامل السالب بسبب التعددية الخطية - راجع الملاحظة أدناه" />
                   </span>
                   <span className="font-mono text-emerald-600 font-bold text-xl">{software.toFixed(2)}</span>
                 </div>
@@ -172,6 +172,7 @@ export default function RegressionSimulator() {
                   onChange={(e) => setSoftware(parseFloat(e.target.value))}
                   className="w-full accent-emerald-500 h-2.5 rounded-full"
                 />
+                <p className="text-xs text-amber-800 italic">* المعامل السالب ظاهرة إحصائية، ليس تأثيراً سلبياً حقيقياً</p>
               </div>
 
               {/* Technical HR */}
@@ -268,10 +269,10 @@ export default function RegressionSimulator() {
             </div>
 
             {modelType === 'multiple' && (
-              <div className="flex gap-3 p-4 bg-rose-50 border-2 border-rose-300 rounded-lg items-start text-right text-base text-rose-800 leading-relaxed">
-                <AlertTriangle className="w-6 h-6 text-rose-600 shrink-0 mt-1" />
+              <div className="flex gap-3 p-4 bg-amber-50 border-2 border-amber-300 rounded-lg items-start text-right text-base text-gray-800 leading-relaxed">
+                <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0 mt-1" />
                 <p>
-                  <strong className="font-bold">ملاحظة فنية:</strong> يعود الوزن المتناقض والسالب لبُعد البرمجيات (-0.467) لوجود ارتباط تشابكي عالٍ بين الأبعاد (التعددية الخطية) وتأثير الكبت الإحصائي ببرنامج SPSS، ولا يعني إطلاقا أن جودة النظام البرمجي تضر بمستوى الأداء فعلياً.
+                  <strong className="font-bold text-amber-900">ملاحظة إحصائية هامة:</strong> المعامل السالب للبرمجيات (-0.467) هو نتيجة <strong>التعددية الخطية</strong> (Multicollinearity) بسبب الارتباط العالي بين المتغيرات المستقلة. هذا <strong>لا يعني</strong> أن البرمجيات تضر بالأداء، بل أن تأثيرها الحقيقي مُدمج مع المتغيرات الأخرى في النموذج المتعدد.
                 </p>
               </div>
             )}
